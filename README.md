@@ -1,22 +1,13 @@
-# Project X
+# Project 1
 
-- Name: John Doe
-- Email: johndoe@u.boisestate.edu
-- Class: CS123-001
+- Name: Cheikh Lame
+- Email: cheikhlame@u.boisestate.edu
+- Class: CS425
 
 ## Known Bugs or Issues
 
-TODO: Are there any known issues?
+No known issues after testing and debugging
 
 ## Experience
 
-TODO: Describe your experience with the project (struggles, breakthroughs, etc.).
-
-## Analysis
-
-TODO: Provide your analysis of the results. If the assignment does not require
-analysis, you can remove this section.
-
-Here is an example of how to include a plot in your README:
-
-![Example Image](scripts/example_plot.png)
+I relied on AI while working on this project and one thing I noticed that it used a lot of C++ code in the creation of the mail client. Though compared to what I have seen other programmers do while researching online, it ended up generating a more lines of code compared to other developers which is interesting.
