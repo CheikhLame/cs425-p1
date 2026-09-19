@@ -6,11 +6,12 @@ BUILD ?= test
 # Set the directories for build and source files
 TEST_DIR ?= tests
 SRC_DIR ?= src
+INC_DIR ?= include
 BUILD_BASE_DIR ?= build
 
 # Flags for hardening and security
 # https://best.openssf.org/Compiler-Hardening-Guides/Compiler-Options-Hardening-Guide-for-C-and-C++.html
-CFLAGS ?= -Wall -Wextra -O2 -fPIE -MMD -MP
+CFLAGS ?= -Wall -Wextra -O2 -fPIE -MMD -MP -I$(INC_DIR)
 CFLAGS += -Wformat -Wformat=2 -Wconversion -Wsign-conversion -Wimplicit-fallthrough
 CFLAGS += -fstack-protector-strong
 CFLAGS += -Werror=format-security -Werror=implicit -Werror=incompatible-pointer-types -Werror=int-conversion
@@ -23,17 +24,17 @@ ifeq ($(BUILD),release)
   BUILD_DIR := $(BUILD_BASE_DIR)/release
   TARGET ?= $(BUILD_DIR)/$(APP_NAME)
 else ifeq ($(BUILD),debug)
-  CFLAGS := -g -O0 -DDEBUG -fno-omit-frame-pointer -fsanitize=address
+  CFLAGS := -g -O0 -DDEBUG -fno-omit-frame-pointer -fsanitize=address -I$(INC_DIR)
   LDFLAGS += -fsanitize=address
   BUILD_DIR := $(BUILD_BASE_DIR)/debug
   TARGET ?= $(BUILD_DIR)/$(APP_NAME)_d
 else ifeq ($(BUILD),test)
-  CFLAGS := -g -O0 -DTEST -fprofile-arcs -ftest-coverage
+  CFLAGS := -g -O0 -DTEST -fprofile-arcs -ftest-coverage -I$(INC_DIR)
   LDFLAGS += -fprofile-arcs -ftest-coverage
   BUILD_DIR := $(BUILD_BASE_DIR)/tests
   TEST_TARGET ?= $(BUILD_DIR)/$(APP_NAME)_t
 else ifeq ($(BUILD),debug-test)
-  CFLAGS := -g -O0 -DDEBUG -DTEST -fno-omit-frame-pointer -fsanitize=address
+  CFLAGS := -g -O0 -DDEBUG -DTEST -fno-omit-frame-pointer -fsanitize=address -I$(INC_DIR)
   LDFLAGS += -fsanitize=address
   BUILD_DIR := $(BUILD_BASE_DIR)/debug-test
   TEST_TARGET ?= $(BUILD_DIR)/$(APP_NAME)_td
